@@ -1,11 +1,14 @@
 package com.uce.edu.pa2.repository.modelo;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -24,6 +27,9 @@ public class Paciente {
     private String apellido;
     @OneToOne(mappedBy = "paciente",cascade = CascadeType.ALL)
     private HistoriaClinica historiaClinica;
+
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
+    private List<CitaMedica> citas;
     
     public Integer getId() {
         return id;
@@ -48,6 +54,12 @@ public class Paciente {
     }
     public void setHistoriaClinica(HistoriaClinica historiaClinica) {
         this.historiaClinica = historiaClinica;
+    }
+    public List<CitaMedica> getCitas() {
+        return citas;
+    }
+    public void setCitas(List<CitaMedica> citas) {
+        this.citas = citas;
     }
 
     
